@@ -1,4 +1,10 @@
 def tuv_cli(zenith_angle, height, temperature, root_path):
+    """
+    This function is a wrapper for TUV model.
+    The function will run TUV model with given zenith angle, height, temperature.
+    The function will return the photolysis rate of some species.
+    
+    """
     from more_itertools import chunked
     import os
     import numpy as np
@@ -9,6 +15,7 @@ def tuv_cli(zenith_angle, height, temperature, root_path):
         temperature : [K]
         height : [km]
     """
+    current_dir = os.getcwd()
     os.chdir(root_path)
 
     if not os.path.isfile("./tuv"):
@@ -55,6 +62,7 @@ def tuv_cli(zenith_angle, height, temperature, root_path):
             "afg1": 0.0
             }
 
+    os.chdir(current_dir)
     return output
 
 if __name__ == "__main__":
